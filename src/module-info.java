@@ -4,6 +4,7 @@
 /**
  * @author fabi_
  *
- */
-module sistemaDeCadastro {
-}
+*
+module sistemaDeCadastro {	
+	requires java,sql;
+}*/
