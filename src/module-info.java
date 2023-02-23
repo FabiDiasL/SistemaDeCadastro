@@ -1,6 +1,6 @@
-module SistemaDeCadastro {
-	exports tela;
-	exports validacaoAcesso;
+module sistemaDeCadastro {
+	//exports tela;
+	//exports validacaoAcesso;
 	exports classesDeConexao;
 
 	requires java.desktop;
