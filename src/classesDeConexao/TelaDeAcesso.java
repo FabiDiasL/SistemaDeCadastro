@@ -6,12 +6,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class TelaDeAcesso extends JFrame {
@@ -77,9 +83,34 @@ public class TelaDeAcesso extends JFrame {
 		btnAcessar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
-				
+				try {
+					Connection conn = Conexao.criaConexaoComMySQL();
+					String sql = "select * from `scsenhas` where usuario = ? and senha = ?;";
+					
+					PreparedStatement pstm = conn.prepareStatement(sql);
+					pstm.setString(1, tfUsuario.getText());
+					pstm.setString(2, new String(pfSenha.getPassword()));
+					
+					ResultSet rset = pstm.executeQuery();
+					
+					if(rset.next()) {
+						
+						TelaDeCadastro exibirTela = new TelaDeCadastro();
+						exibirTela.setVisible(true);
+						
+						setVisible(false);						
+					}else {
+						JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos!");
+					}
+					
+					rset.close();
+					pstm.close();
+					conn.close();
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 				
 			}
 		});
 		btnAcessar.setForeground(new Color(0, 0, 255));
