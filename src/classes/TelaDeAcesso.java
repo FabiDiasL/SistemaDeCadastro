@@ -1,4 +1,4 @@
-package classesDeConexao;
+package classes;
 
 import java.awt.EventQueue;
 
@@ -56,61 +56,64 @@ public class TelaDeAcesso extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lbUsuario = new JLabel("USUÁRIO");
 		lbUsuario.setForeground(new Color(0, 0, 255));
 		lbUsuario.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lbUsuario.setBounds(10, 55, 85, 37);
 		contentPane.add(lbUsuario);
-		
+
 		tfUsuario = new JTextField();
 		tfUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		tfUsuario.setBounds(97, 55, 150, 31);
 		contentPane.add(tfUsuario);
 		tfUsuario.setColumns(10);
-		
+
 		lbSenha = new JLabel("SENHA");
 		lbSenha.setForeground(Color.BLUE);
 		lbSenha.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lbSenha.setBounds(10, 115, 85, 37);
 		contentPane.add(lbSenha);
-		
+
 		pfSenha = new JPasswordField();
 		pfSenha.setBounds(97, 115, 150, 31);
 		contentPane.add(pfSenha);
-		
+
 		JButton btnAcessar = new JButton("Acessar");
 		btnAcessar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					Connection conn = Conexao.criaConexaoComMySQL();
-					String sql = "select * from `scsenhas` where usuario = ? and senha = ?;";
-					
-					PreparedStatement pstm = conn.prepareStatement(sql);
-					pstm.setString(1, tfUsuario.getText());
-					pstm.setString(2, new String(pfSenha.getPassword()));
-					
-					ResultSet rset = pstm.executeQuery();
-					
-					if(rset.next()) {
-						
-						TelaDeCadastro exibirTela = new TelaDeCadastro();
-						exibirTela.setVisible(true);
-						
-						setVisible(false);						
-					}else {
-						JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos!");
+				if (tfUsuario.getText().equals("") || pfSenha.getPassword().equals("")) {
+					JOptionPane.showMessageDialog(null, "Digite o/a usuário/senha que deseja acessar!");
+				} else {
+					try {
+						Connection conn = Conexao.criaConexaoComMySQL();
+						String sql = "select * from `scsenhas` where usuario = ? and senha = ?;";
+
+						PreparedStatement pstm = conn.prepareStatement(sql);
+						pstm.setString(1, tfUsuario.getText());
+						pstm.setString(2, new String(pfSenha.getPassword()));
+
+						ResultSet rset = pstm.executeQuery();
+
+						if (rset.next()) {
+
+							TelaDeCadastro exibirTela = new TelaDeCadastro();
+							exibirTela.setVisible(true);
+
+							setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos!");
+						}
+
+						rset.close();
+						pstm.close();
+						conn.close();
+
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					
-					rset.close();
-					pstm.close();
-					conn.close();
-					
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 				
+				}
 			}
 		});
 		btnAcessar.setForeground(new Color(0, 0, 255));

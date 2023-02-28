@@ -1,7 +1,7 @@
 module sistemaDeCadastro {
 	//exports tela;
 	//exports validacaoAcesso;
-	exports classesDeConexao;
+	exports classes;
 
 	requires java.desktop;
 	requires java.sql;
