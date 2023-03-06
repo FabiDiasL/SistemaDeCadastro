@@ -304,7 +304,7 @@ public class TelaDeCadastro extends JFrame {
 				}
 			}
 		});
-		btnListarDados.setBounds(310, 30, 96, 21);
+		btnListarDados.setBounds(295, 30, 111, 20);
 		panel_1.add(btnListarDados);
 
 		JScrollPane scrollPane = new JScrollPane();
