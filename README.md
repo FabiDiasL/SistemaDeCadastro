@@ -8,4 +8,4 @@
 ### Neste projeto pude aprofundar os conhecimentos e possibilidades da biblioteca swing do Java e implementar as telas com mais praticidade utilizando a aba design. 
 ### O código foi escrito orientado a objetos e orientado a eventos.
 
-## Tecnologias utilizadas: <div style="display: inline_block"><br><img align="center" alt="JAVA" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"> <img align="center" alt="MySQL" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg">
+## Tecnologias utilizadas: <div style="display: inline_block"><br><img align="center" alt="JAVA" height="60" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"> <img align="center" alt="MySQL" height="60" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg">
